@@ -23,7 +23,6 @@
   font-size: 1rem;
   color: #002c66;
   text-decoration: none;
-  margin-left: 0.1rem;
   margin-bottom: 1.6rem;
   transition: transform 0.3s ease;
 }
@@ -50,7 +49,7 @@
   margin: 0 auto;
   text-align: center;
   margin-left: 5%;
-  margin-right: 20%;
+  margin-right: 30%;
   line-height: 1.6;
   letter-spacing: 0.05em;
   /* Add slight spacing for elegance */
