@@ -272,18 +272,16 @@ export default function AllDetails() {
         </div>
 
         <div className='freelancer-details'>
-  <h2 className="freelancer-topic">
-    Freelance Web Designer Based in <span>Sri Lanka</span>, Serving Clients Worldwide
-  </h2>
-  <p id='freelancer-topic-own-details'>
-    At Shehan's Freelancing Hub, I offer expert web design services to clients worldwide. With over 2 years of experience in web design and UI development, I create tailored solutions for businesses and individuals across industries. From small, responsive websites to complex projects, I focus on aesthetics, functionality, and user experience. Let's collaborate to deliver a website that exceeds your expectations, on time and within budget.
-    <br /><br />
-    <a href="tel:+94766722019" id='contact' style={{ textDecoration: 'none', color: '#00ff7f', fontSize: '1.5rem', fontWeight: 'bold' }}>
-      +94 766 722 019
-    </a>
-  </p>
-</div>
+          <h2 className="freelancer-topic">
+            Freelance Web Designer Based in <span>Sri Lanka</span>, Serving Clients Worldwide</h2>
+          <p id='freelancer-topic-own-details'>At Shehan's Freelancing Hub, I offer expert web design services to clients worldwide. With over 2 years of experience in web design and UI development, I create tailored solutions for
+            businesses and individuals across industries.From small, responsive websites to complex projects,I focus on aesthetics,functionality,
+            and user experience. Let's collaborate to deliver a website that exceeds your expectations,on time and within budget.
+            <br></br>
+            <h3 id='contact'>+94 766 722 019</h3>
+          </p>
 
+        </div>
       </div>
       {/* <div className='freelancer-details'>
         <h2 className="freelancer-topic">
