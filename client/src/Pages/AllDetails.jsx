@@ -45,8 +45,11 @@ export default function AllDetails() {
     email: "",
     subject: "",
     message: "",
-
   });
+  const [loading, setLoading] = useState(false); // State to handle loading
+  
+
+  
   const validateForm = () => {
     let errors = {};
     if (!formData.username) errors.username = "Name is required";
@@ -56,70 +59,79 @@ export default function AllDetails() {
     else if (!/^\d{10}$/.test(formData.phone_number)) errors.phone_number = "Contact should be a 10-digit number";
     if (!formData.subject) errors.subject = "Subject is required";
     if (!formData.message) errors.message = "Message details are required";
-
+  
     setValidationErrors(errors);
     return Object.keys(errors).length === 0;
   };
-
-
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  setError('');
-  if (!validateForm()) return;
-
-  try {
-    const res = await fetch('/api/message/create_messsage', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    });
-
-    if (!res.ok) {
-      const data = await res.json();
-      throw new Error(data.message || 'Failed to create item');
-    }
-    const data = await res.json();
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
     
-    if (res.ok && data.success) {
-     
-      
-      const emailResponse = await fetch('/api/message/send_email', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ email: formData.email }), // Send only the email
+    if (!validateForm()) return;
+  
+    setLoading(true); // Set loading state
+  
+    try {
+      const res = await fetch('/api/message/create_messsage', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
       });
-
-      const emailData = await emailResponse.json(); // Parse JSON response
-
-      if (emailResponse.ok && emailData.success) {
-          console.log("Thank you email sent to:", formData.email);
+  
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.message || 'Failed to send message');
       }
+  
+      const data = await res.json();
+      
+      if (res.ok && data.success) {
+        // Send email confirmation
+        const emailResponse = await fetch('/api/message/send_email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: formData.email }),
+        });
+  
+        const emailData = await emailResponse.json();
+        if (emailResponse.ok && emailData.success) {
+          console.log("Thank you email sent to:", formData.email);
+        }
+  
+        // Show success message
+        Swal.fire({
+          icon: 'success',
+          title: 'Message Sent!',
+          text: 'We received your message.',
+          confirmButtonColor: '#00ff7f',
+          width: '300px',
+        });
+  
+        // Clear the form after success
+        setFormData({
+          username: "",
+          phone_number: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+  
+      }
+    } catch (error) {
+      setError('Something went wrong!');
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong. Please try again later.',
+        confirmButtonColor: '#d33',
+        width: '300px',
+      });
+    } finally {
+      setLoading(false); // Stop loading after request completes
     }
-    // Show success message with smaller box
-    Swal.fire({
-      icon: 'success',
-      title: 'Message Sent!',
-      text: 'We received your message.',
-      confirmButtonColor: '#00ff7f',
-      width: '300px', // Adjust the width here
-    });
-
-    navigate('/');
-  } catch (error) {
-    setError('Something went wrong!');
-    Swal.fire({
-      icon: 'error',
-      title: 'Oops...',
-      text: 'Something went wrong. Please try again later.',
-      confirmButtonColor: '#d33',
-      width: '300px', // Adjust the width here
-    });
-  }
-};
+  };
+  
 
   
 
@@ -260,16 +272,18 @@ const handleSubmit = async (e) => {
         </div>
 
         <div className='freelancer-details'>
-          <h2 className="freelancer-topic">
-            Freelance Web Designer Based in <span>Sri Lanka</span>, Serving Clients Worldwide</h2>
-          <p id='freelancer-topic-own-details'>At Shehan's Freelancing Hub, I offer expert web design services to clients worldwide. With over 2 years of experience in web design and UI development, I create tailored solutions for
-            businesses and individuals across industries.From small, responsive websites to complex projects,I focus on aesthetics,functionality,
-            and user experience. Let's collaborate to deliver a website that exceeds your expectations,on time and within budget.
-            <br></br>
-            <h3 id='contact'>+94 766 722 019</h3>
-          </p>
+  <h2 className="freelancer-topic">
+    Freelance Web Designer Based in <span>Sri Lanka</span>, Serving Clients Worldwide
+  </h2>
+  <p id='freelancer-topic-own-details'>
+    At Shehan's Freelancing Hub, I offer expert web design services to clients worldwide. With over 2 years of experience in web design and UI development, I create tailored solutions for businesses and individuals across industries. From small, responsive websites to complex projects, I focus on aesthetics, functionality, and user experience. Let's collaborate to deliver a website that exceeds your expectations, on time and within budget.
+    <br /><br />
+    <a href="tel:+94766722019" id='contact' style={{ textDecoration: 'none', color: '#00ff7f', fontSize: '1.5rem', fontWeight: 'bold' }}>
+      +94 766 722 019
+    </a>
+  </p>
+</div>
 
-        </div>
       </div>
       {/* <div className='freelancer-details'>
         <h2 className="freelancer-topic">
@@ -474,15 +488,17 @@ const handleSubmit = async (e) => {
       </div>
 
       <button
-        type="submit"
-        className="btn btn-success w-100"
-        style={{
-          fontSize: "1.2rem",
-          fontWeight: "bold",
-        }}
-      >
-        Submit
-      </button>
+  type="submit"
+  className="btn btn-success w-100"
+  style={{
+    fontSize: "1.2rem",
+    fontWeight: "bold",
+  }}
+  disabled={loading} // Disable while waiting
+>
+  {loading ? "Sending..." : "Submit"}
+</button>
+
     </form>
   </div>
 </div>
