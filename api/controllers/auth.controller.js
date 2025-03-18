@@ -129,46 +129,6 @@ export const google=async(req,res,next)=>{
 }
 
 
- // Adjust the path as needed
-//images
-export const google1 = async (req, res, next) => {
-    try {
-        const user = await Requets.findOne({ email: req.body.itemId });
-
-        if (user) {
-            const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
-            const { password, ...rest } = user._doc;
-            const expiryDate = new Date(Date.now() + 24 * 60 * 60 * 1000);
-            res.cookie('access_token', token, { httpOnly: true, expires: expiryDate })
-                .status(200)
-                .json(rest);
-        } else {
-            const generatedPassword = Math.random().toString(36).slice(-8) + Math.random().toString(36).slice(-8);
-            const hashedPassword = bcryptjs.hashSync(generatedPassword, 10);
-
-            const newUser = new Requets({
-                username: req.body.name.split(' ').join('').toLowerCase() + Math.random().toString(36).slice(-8),
-                email: req.body.itemId,
-                password: hashedPassword,
-                profilePicture: req.body.photo
-            });
-            
-            await newUser.save();
-
-            const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
-            const { password, ...rest } = newUser._doc;
-            const expiryDate = new Date(Date.now() + 24 * 60 * 60 * 1000);
-            res.cookie('access_token', token, { httpOnly: true, expires: expiryDate })
-                .status(200)
-                .json(rest);
-        }
-    } catch (error) {
-        next(error);
-    }
-};
-
-
-
 
 
 

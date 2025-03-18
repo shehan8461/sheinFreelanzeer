@@ -3,8 +3,8 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import userRoutes from './routes/user.routes.js'
 import authroutes from './routes/auth.routes.js'
-import adminroutes from './routes/admin.routes.js'
 import messageroutes from './routes/message.routes.js'
+
 import cookieParser from 'cookie-parser';
 
 dotenv.config();
@@ -26,7 +26,6 @@ app.listen(3000, () => {
 
 app.use("/api/user",userRoutes)
 app.use("/api/auth",authroutes)
-app.use("/api/admin",adminroutes)
 app.use("/api/message",messageroutes)
 
 app.use((err,req,res,next)=>{

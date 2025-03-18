@@ -18,24 +18,28 @@ export default function Header() {
         <Link to="/">
           <h1 className="twebpagename"><b>Shehan's Freelancing Hub</b></h1>
         </Link>
-        <span className="contact-number" onClick={handleCall}>
+       
+        <h3 id="h3">Delivering Excellence in Web Development and Design</h3>
+        <div className="contact-number">
+        <span  onClick={handleCall}>
           <i className="fab fa-whatsapp"></i> 0766722019
         </span>
-        <h3 id="h3">Delivering Excellence in Web Development and Design</h3>
-        { <button
+        </div>
+        {/* { <button and Design
           className="menu-button"
           onClick={() => setMenuOpen(!menuOpen)}
         >
           ☰
-        </button> }
-         <ul className={`other-topics ${menuOpen ? 'open' : ''}`}>
+        </button> } */}
+          {/* <div className='other-topics'>
           <Link to="/">
             <li>Home</li>
           </Link>
           <Link to="/about">
-            <li>About</li>c
+            <li>About</li>
           </Link>
-          <Link to="/profile"> 
+          </div> */}
+          {/* <Link to="/profile"> 
              {currentUser ? (
               <img
                 src={currentUser.profilePicture}
@@ -46,8 +50,8 @@ export default function Header() {
             ) : (
               <li>SignIn</li>
             )}
-          </Link>
-        </ul> 
+          </Link> */}
+    
       </div>
     </div>
   );

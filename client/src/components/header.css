@@ -13,15 +13,7 @@
 }
 
 /* Flex container styles */
-.navbardetails {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 72rem;
-  /* Equivalent to max-w-6xl */
-  width: 100%;
-  padding: 0 1rem;
-}
+
 
 /* Website name (left-aligned) */
 .twebpagename {
@@ -32,7 +24,7 @@
   color: #002c66;
   text-decoration: none;
   margin-left: 0.1rem;
-  margin-bottom: 1.8rem;
+  margin-bottom: 1.6rem;
   transition: transform 0.3s ease;
 }
 
@@ -57,8 +49,8 @@
   font-size: 1.6rem;
   margin: 0 auto;
   text-align: center;
-  margin-left: 10%;
-  margin-right: -10%;
+  margin-left: 5%;
+  margin-right: 20%;
   line-height: 1.6;
   letter-spacing: 0.05em;
   /* Add slight spacing for elegance */
@@ -75,36 +67,7 @@
 }
 
 /* Navigation list (right-aligned) */
-.other-topics {
-  position: absolute;
-  list-style: none;
-  margin: 0;
-  display: flex;
-  gap: 1.5rem;
-  left: 85%;
-  /* Add padding instead of margin to adjust alignment */
-  align-items: center;
-  justify-content: flex-end;
-  flex-grow: 1;
-  transition: max-height 0.3s ease, opacity 0.3s ease;
-}
 
-/* Links inside navigation */
-.other-topics a {
-  text-decoration: none;
-  color: #fff;
-  font-family: 'Roboto', sans-serif;
-  font-size: 1rem;
-  font-weight: 500;
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.other-topics a:hover {
-  color: #ffde59;
-  /* Bright hover color */
-  transform: translateY(-2px);
-  /* Slight lift on hover */
-}
 
 /* Profile picture styles */
 .h-7 {
@@ -116,122 +79,46 @@
   width: 2rem;
 }
 
-.rounded-full {
-  border-radius: 50%;
-  border: 2px solid #fff;
-  /* Add a border for better visibility */
-  transition: transform 0.3s ease;
-}
-
-.rounded-full:hover {
-  transform: scale(1.1);
-}
-
 .object-cover {
   object-fit: cover;
 }
 
 /* Enhanced Mobile Menu Styles */
-.other-topics.open {
+
+
+
+
+
+.navbardetails {
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  background: linear-gradient(135deg, #ffa11d, #010101);
-  /* Gradient for a modern look */
-  position: absolute;
-  top: 4rem;
-  right: 1rem;
-  padding: 1rem 1.5rem;
-  border-radius: 0.5rem;
-  z-index: 15;
-  max-height: 20rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-  /* Subtle shadow for depth */
-  animation: fadeIn 0.3s ease-out;
+  align-items: center;
+  justify-content: space-between; /* Ensure proper spacing */
+  width: 100%;
+  padding: 0 1rem;
+  position: relative; /* Make it the reference for absolute positioning */
 }
 
-.other-topics.open a {
-  color: #fff;
-  font-family: 'Roboto', sans-serif;
-  font-size: 1rem;
-  font-weight: 600;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 0.25rem;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.other-topics.open a:hover {
-  background-color: rgba(255, 222, 89, 0.8);
-  /* Bright hover background */
-  color: #010101;
-  /* Contrast text color */
-  transform: scale(1.05);
-  /* Subtle zoom */
-}
-
-.menu-button {
-  display: block;
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 2rem;
-  cursor: pointer;
-  z-index: 20;
-  position: absolute;
-  right: 1rem;
-  top: 1rem;
-  transition: transform 0.3s ease;
-}
-
-.menu-button:hover {
-  transform: rotate(90deg);
-  color: #ffde59;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.other-topics {
+  display: flex;
+  gap: 1.5rem;
+  flex-grow: 1;
+  justify-content: center;
 }
 
 .contact-number {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  position: absolute;
+  right: 1rem; /* Keep it aligned to the right */
+  top: 50%;
+  transform: translateY(-50%); /* Center vertically */
   font-family: 'Roboto', sans-serif;
   font-size: 1rem;
-  color: #000000;
-  /* WhatsApp green color */
+  color: green;
   cursor: pointer;
   transition: all 0.3s ease;
   padding: 0.5rem 1rem;
   background: rgba(255, 255, 255, 0.1);
-  border-radius: 25px;
-  margin-right: -5%;
-
-
+  border-radius: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.contact-number:hover {
-  color: #fff;
-  background: #000000;
-  transform: scale(1.1);
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-}
-
-.contact-number i {
-  font-size: 1.5rem;
-  margin-right: 0.5rem;
-  transition: transform 0.3s ease;
 }
 
 .contact-number:hover i {
@@ -247,13 +134,27 @@
 
   /* Hide menu items by default on smaller screens */
   .other-topics {
-    display: none;
+  
     /* Hidden by default */
     max-height: 0;
     opacity: 0;
     margin-right: 0.1%;
   }
-
+  .contact-number {
+    position: absolute;
+  right: 1rem; /* Keep it aligned to the right */
+  top: 10%;
+  transform: translateY(-50%); /* Center vertically */
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.8rem;
+  color: green;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0.3rem 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2)
+  }
   .menu-button {
     font-size: 1.8rem;
     /* Slightly smaller font */
@@ -262,18 +163,31 @@
     right: 0.5rem;
   }
 
-  .other-topics.open {
-    display: flex;
-    /* Show on menu open */
-    opacity: 1;
-    flex-direction: column;
-    gap: 1rem;
+/* Responsive styles */
+@media (max-width: 480px) {
+ 
+
+  /* Hide menu items by default on smaller screens */
+
+
+  .contact-number {
+    position: absolute;
+    right: 1rem; /* Keep it aligned to the right */
+    top: 15%;
+    transform: translateY(-50%); /* Center vertically */
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.8rem;
+    color: green;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0.3rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2)
   }
 
-  .menu-button {
-    display: block;
-    /* Show on smaller screens */
-  }
+}
+
 
   .navbardetails {
     flex-direction: column;
@@ -305,30 +219,11 @@
     /* Slightly smaller font size */
   }
 
-  .contact-number {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    font-family: 'Roboto', sans-serif;
-    font-size: 1rem;
-    color: #000000;
-    /* WhatsApp green color */
-    cursor: pointer;
-    transition: all 0.3s ease;
-    padding: 0.5rem 1rem;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 25px;
-    margin-left: 30%;
-    margin-top: -15%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
+
 }
 
 @media (max-width: 480px) {
-  .other-topics.open {
-    padding: 2rem;
 
-  }
 
   /* For mobile screens */
   #img {
@@ -343,40 +238,13 @@
     /* Smaller font for "Sign In" */
   }
 
-  .menu-button {
-    font-size: 2rem;
-    /* Further reduce size */
-    top: 0.3rem;
-    /* Adjust positioning */
-    right: 1rem;
-  }
 
-  /* Enhanced Mobile Menu Styles */
-  .other-topics.open {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    background: rgb(68, 39, 0);
-    /* Change to transparent background */
-    position: absolute;
-    top: 4rem;
-    margin-left: -2rem;
-    /* Move the menu to the left side */
-    padding: 1rem 1.5rem;
-    border-radius: 0.5rem;
-    z-index: 15;
-    max-height: 20rem;
-    width: 20%;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    /* Optional: Keep shadow for depth */
-    animation: fadeIn 0.3s ease-out;
-  }
 
 
   .twebpagename {
     font-size: 0.8rem;
     text-align: center;
-    margin-right: 16rem;
+    margin-right: 14rem;
     white-space: nowrap;
 
   }
@@ -385,21 +253,5 @@
     font-size: 1rem;
   }
 
-  .contact-number {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    font-family: 'Roboto', sans-serif;
-    font-size: 1rem;
-    color: #000000;
-    /* WhatsApp green color */
-    cursor: pointer;
-    transition: all 0.3s ease;
-    padding: 0.5rem 1rem;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 25px;
-    margin-left: 30%;
-    margin-top: -17%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
+
 }

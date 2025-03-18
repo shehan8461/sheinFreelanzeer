@@ -1,7 +1,7 @@
 import User from "../models/user.model.js"
 import Requet from "../models/request.model.js"
 import { errorHandler } from "../utils/error.js"
-import Admin from "../models/admin.model.js"
+
 import bcryptjs from 'bcryptjs';
 
 export const test=(req,res)=>{
