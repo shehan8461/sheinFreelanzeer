@@ -23,6 +23,7 @@ import { getStorage, uploadBytesResumable, ref, getDownloadURL } from 'firebase/
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Swal from 'sweetalert2';
 import dotenv from 'dotenv';
+import emailjs from '@emailjs/browser';
 
 export default function AllDetails() {
   const [webDesigns, setWebDesigns] = useState(0);
@@ -46,10 +47,9 @@ export default function AllDetails() {
     subject: "",
     message: "",
   });
-  const [loading, setLoading] = useState(false); // State to handle loading
-  
 
-  
+  const [loading, setLoading] = useState(false);
+
   const validateForm = () => {
     let errors = {};
     if (!formData.username) errors.username = "Name is required";
@@ -59,79 +59,59 @@ export default function AllDetails() {
     else if (!/^\d{10}$/.test(formData.phone_number)) errors.phone_number = "Contact should be a 10-digit number";
     if (!formData.subject) errors.subject = "Subject is required";
     if (!formData.message) errors.message = "Message details are required";
-  
+
     setValidationErrors(errors);
     return Object.keys(errors).length === 0;
   };
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
-    
     if (!validateForm()) return;
-  
-    setLoading(true); // Set loading state
-  
+    setLoading(true);
+
     try {
-      const res = await fetch('/api/message/create_messsage', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-  
-      if (!res.ok) {
-        const data = await res.json();
-        throw new Error(data.message || 'Failed to send message');
-      }
-  
-      const data = await res.json();
-      
-      if (res.ok && data.success) {
-        // Send email confirmation
-        const emailResponse = await fetch('/api/message/send_email', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: formData.email }),
-        });
-  
-        const emailData = await emailResponse.json();
-        if (emailResponse.ok && emailData.success) {
-          console.log("Thank you email sent to:", formData.email);
-        }
-  
-        // Show success message
-        Swal.fire({
-          icon: 'success',
-          title: 'Message Sent!',
-          text: 'We received your message.',
-          confirmButtonColor: '#00ff7f',
-          width: '300px',
-        });
-  
-        // Clear the form after success
-        setFormData({
-          username: "",
-          phone_number: "",
-          email: "",
-          subject: "",
-          message: "",
-        });
-  
-      }
-    } catch (error) {
-      setError('Something went wrong!');
+      await emailjs.send(
+        'service_xk2szuj', // Replace with your EmailJS Service ID
+        'template_bur8t5m', // Replace with your EmailJS Template ID
+        {
+          username: formData.username,
+          phone_number: formData.phone_number,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+         // time: new Date().toLocaleString(),
+        },
+        'aRfv6KVElbbOn9urH' // Replace with your EmailJS Public Key
+      );
+
       Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Something went wrong. Please try again later.',
-        confirmButtonColor: '#d33',
+        icon: 'success',
+        title: 'Message Sent!',
+        text: 'Your request was successfully submitted!',
+        confirmButtonColor: '#00ff7f',
         width: '300px',
       });
+
+      setFormData({
+        username: "",
+        phone_number: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Failed to Send',
+        text: error.message,
+        confirmButtonColor: '#d33',
+        width: '300px',
+
+      });
     } finally {
-      setLoading(false); // Stop loading after request completes
+      setLoading(false);
     }
   };
-  
 
   
 
@@ -384,120 +364,35 @@ export default function AllDetails() {
       Send Message
     </h1>
     <form onSubmit={handleSubmit}>
-      <div className="mb-3">
-        <label htmlFor="name" className="form-label text-light">
-          Your Name
-        </label>
-        <input
-          id="name"
-          type="text"
-          className={`form-control ${validationErrors.username ? "is-invalid" : ""}`}
-          style={{
-            backgroundColor: "#333333",
-            color: "#ffffff",
-            border: "1px solid #ffffff", // Updated border color
-          }}
-          onChange={(e) => setFormData({ ...formData, username: e.target.value })}
-        />
-        {validationErrors.username && (
-          <div className="invalid-feedback">{validationErrors.username}</div>
-        )}
-      </div>
-
-      <div className="mb-3">
-        <label htmlFor="contact" className="form-label text-light">
-          Contact
-        </label>
-        <input
-          id="phone_number"
-          type="text"
-          className={`form-control ${validationErrors.phone_number ? "is-invalid" : ""}`}
-          style={{
-            backgroundColor: "#333333",
-            color: "#ffffff",
-            border: "1px solid #ffffff", // Updated border color
-          }}
-          onChange={(e) => setFormData({ ...formData, phone_number: e.target.value })}
-        />
-        {validationErrors.phone_number && (
-          <div className="invalid-feedback">{validationErrors.phone_number}</div>
-        )}
-      </div>
-
-      <div className="mb-3">
-        <label htmlFor="email" className="form-label text-light">
-          Email
-        </label>
-        <input
-          id="email"
-          type="email"
-          className={`form-control ${validationErrors.email ? "is-invalid" : ""}`}
-          style={{
-            backgroundColor: "#333333",
-            color: "#ffffff",
-            border: "1px solid #ffffff", // Updated border color
-          }}
-          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-        />
-        {validationErrors.email && (
-          <div className="invalid-feedback">{validationErrors.email}</div>
-        )}
-      </div>
-
-      <div className="mb-3">
-        <label htmlFor="subject" className="form-label text-light">
-          Subject
-        </label>
-        <input
-          id="subject"
-          type="text"
-          className={`form-control ${validationErrors.subject ? "is-invalid" : ""}`}
-          style={{
-            backgroundColor: "#333333",
-            color: "#ffffff",
-            border: "1px solid #ffffff", // Updated border color
-          }}
-          onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-        />
-        {validationErrors.subject && (
-          <div className="invalid-feedback">{validationErrors.subject}</div>
-        )}
-      </div>
-
-      <div className="mb-3">
-        <label htmlFor="message" className="form-label text-light">
-          Message
-        </label>
-        <textarea
-          id="message"
-          rows="5"
-          className={`form-control ${validationErrors.message ? "is-invalid" : ""}`}
-          style={{
-            backgroundColor: "#333333",
-            color: "#ffffff",
-            border: "1px solid #ffffff", // Updated border color
-            resize: "none",
-          }}
-          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-        ></textarea>
-        {validationErrors.message && (
-          <div className="invalid-feedback">{validationErrors.message}</div>
-        )}
-      </div>
-
-      <button
-  type="submit"
-  className="btn btn-success w-100"
-  style={{
-    fontSize: "1.2rem",
-    fontWeight: "bold",
-  }}
-  disabled={loading} // Disable while waiting
->
-  {loading ? "Sending..." : "Submit"}
-</button>
-
-    </form>
+        {["username", "phone_number", "email", "subject", "message"].map((field) => (
+          <div key={field} className="mb-4">
+            <label className="block font-semibold capitalize">{field.replace("_", " ")}</label>
+            {field === "message" ? (
+              <textarea
+                className="w-full p-2 border border-gray-300 rounded"
+                rows="4"
+                value={formData[field]}
+                onChange={(e) => setFormData({ ...formData, [field]: e.target.value })}
+              />
+            ) : (
+              <input
+                type={field === "email" ? "email" : field === "phone_number" ? "tel" : "text"}
+                className="w-full p-2 border border-gray-300 rounded"
+                value={formData[field]}
+                onChange={(e) => setFormData({ ...formData, [field]: e.target.value })}
+              />
+            )}
+            {validationErrors[field] && <p className="text-red-500 text-sm">{validationErrors[field]}</p>}
+          </div>
+        ))}
+        <button
+          type="submit"
+          className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 disabled:opacity-50"
+          disabled={loading}
+        >
+          {loading ? "Sending..." : "Send Message"}
+        </button>
+      </form>
   </div>
 </div>
 
