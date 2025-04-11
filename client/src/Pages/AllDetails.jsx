@@ -17,9 +17,9 @@ import tailwind from '../Pages/Images/tailwind.png'
 import packettracer from '../Pages/Images/packettracer.png'
 import figma from '../Pages/Images/figma.png'
 import { Link, useNavigate } from 'react-router-dom';
-import { app } from '../firebase';
+
 import { useSelector } from 'react-redux';
-import { getStorage, uploadBytesResumable, ref, getDownloadURL } from 'firebase/storage';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Swal from 'sweetalert2';
 import dotenv from 'dotenv';
