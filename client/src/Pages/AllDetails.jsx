@@ -368,19 +368,21 @@ export default function AllDetails() {
           <div key={field} className="mb-4">
             <label className="block font-semibold capitalize">{field.replace("_", " ")}</label>
             {field === "message" ? (
-              <textarea
-                className="w-full p-2 border border-gray-300 rounded"
-                rows="4"
-                value={formData[field]}
-                onChange={(e) => setFormData({ ...formData, [field]: e.target.value })}
-              />
+            <textarea
+            className="w-full p-2 border border-gray-300 rounded text-white bg-gray-800"
+            rows="4"
+            value={formData[field]}
+            onChange={(e) => setFormData({ ...formData, [field]: e.target.value })}
+          />
+          
             ) : (
               <input
-                type={field === "email" ? "email" : field === "phone_number" ? "tel" : "text"}
-                className="w-full p-2 border border-gray-300 rounded"
-                value={formData[field]}
-                onChange={(e) => setFormData({ ...formData, [field]: e.target.value })}
-              />
+  type={field === "email" ? "email" : field === "phone_number" ? "tel" : "text"}
+  className="w-full p-2 border border-gray-300 rounded text-white bg-gray-800"
+  value={formData[field]}
+  onChange={(e) => setFormData({ ...formData, [field]: e.target.value })}
+/>
+
             )}
             {validationErrors[field] && <p className="text-red-500 text-sm">{validationErrors[field]}</p>}
           </div>
