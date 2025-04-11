@@ -1,0 +1,256 @@
+/* Main container styles */
+.nav {
+  background: linear-gradient(135deg, #ebda7a, #f59919);
+  /* Gradient background */
+  padding: 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow for depth */
+}
+
+/* Flex container styles */
+
+
+/* Website name (left-aligned) */
+.twebpagename {
+  font-family: 'Poppins', sans-serif;
+  /* Modern, professional font */
+  font-weight: 300;
+  font-size: 1rem;
+  color: #002c66;
+  text-decoration: none;
+  margin-bottom: 1.6rem;
+  transition: transform 0.3s ease;
+}
+
+.twebpagename:hover {
+  transform: scale(1.1);
+  /* Hover effect for engagement */
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+  /* Subtle shadow */
+}
+
+/* Main topic (centered) */
+#h3 {
+  font-family: 'Roboto', sans-serif;
+  color: #f8f9fa;
+  /* Soft white for readability */
+  background: linear-gradient(90deg, #000000, #000000, #312a00fd);
+  /* Gradient with orange focus */
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+  font-size: 1.6rem;
+  margin: 0 auto;
+  text-align: center;
+  margin-left: 5%;
+  margin-right: 30%;
+  line-height: 1.6;
+  letter-spacing: 0.05em;
+  /* Add slight spacing for elegance */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  /* Subtle shadow for depth */
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+#h3:hover {
+  transform: scale(1.05);
+  /* Subtle grow effect */
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.35);
+  /* More shadow on hover */
+}
+
+/* Navigation list (right-aligned) */
+
+
+/* Profile picture styles */
+.h-7 {
+  height: 2rem;
+  /* Slightly larger for better visibility */
+}
+
+.w-7 {
+  width: 2rem;
+}
+
+.object-cover {
+  object-fit: cover;
+}
+
+/* Enhanced Mobile Menu Styles */
+
+
+
+
+
+.navbardetails {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Ensure proper spacing */
+  width: 100%;
+  padding: 0 1rem;
+  position: relative; /* Make it the reference for absolute positioning */
+}
+
+.other-topics {
+  display: flex;
+  gap: 1.5rem;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.contact-number {
+  position: absolute;
+  right: 1rem; /* Keep it aligned to the right */
+  top: 50%;
+  transform: translateY(-50%); /* Center vertically */
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  color: green;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.contact-number:hover i {
+  transform: scale(1.3);
+}
+
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .nav {
+    height: 8rem;
+  }
+
+  /* Hide menu items by default on smaller screens */
+  .other-topics {
+  
+    /* Hidden by default */
+    max-height: 0;
+    opacity: 0;
+    margin-right: 0.1%;
+  }
+  .contact-number {
+    position: absolute;
+  right: 1rem; /* Keep it aligned to the right */
+  top: 10%;
+  transform: translateY(-50%); /* Center vertically */
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.8rem;
+  color: green;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0.3rem 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2)
+  }
+  .menu-button {
+    font-size: 1.8rem;
+    /* Slightly smaller font */
+    top: 0.5rem;
+    /* Adjust positioning */
+    right: 0.5rem;
+  }
+
+/* Responsive styles */
+@media (max-width: 480px) {
+ 
+
+  /* Hide menu items by default on smaller screens */
+
+
+  .contact-number {
+    position: absolute;
+    right: 1rem; /* Keep it aligned to the right */
+    top: 15%;
+    transform: translateY(-50%); /* Center vertically */
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.8rem;
+    color: green;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0.3rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2)
+  }
+
+}
+
+
+  .navbardetails {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .twebpagename {
+    font-size: 0.8rem;
+    text-align: center;
+    margin-right: 17rem;
+    white-space: nowrap;
+
+  }
+
+  #h3 {
+    text-align: center;
+    font-size: 1rem;
+    margin: 0.1rem 0;
+  }
+
+  img {
+    height: 1.5rem;
+    /* Reduce size */
+    width: 1.5rem;
+  }
+
+  li {
+    font-size: 0.9rem;
+    /* Slightly smaller font size */
+  }
+
+
+}
+
+@media (max-width: 480px) {
+
+
+  /* For mobile screens */
+  #img {
+    height: 1.5rem;
+    /* Further reduce size */
+    width: 1.5rem;
+    padding: 1rem;
+  }
+
+  li {
+    font-size: 0.8rem;
+    /* Smaller font for "Sign In" */
+  }
+
+
+
+
+  .twebpagename {
+    font-size: 0.8rem;
+    text-align: center;
+    margin-right: 14rem;
+    white-space: nowrap;
+
+  }
+
+  #h3 {
+    font-size: 1rem;
+  }
+
+
+}
