@@ -745,7 +745,7 @@ export default function AllDetailsImproved() {
                 </div>
                 <div className='contact-card-content'>
                   <h4>Email</h4>
-                  <p>shehan@freelancing.com</p>
+                  <p>shehanfreelanzer@gmail.com</p>
                   <span className='contact-availability'>24/7 Support</span>
                 </div>
               </div>
