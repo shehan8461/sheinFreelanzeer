@@ -1,0 +1,1147 @@
+/* ===================================
+   IMPROVED HEADER STYLES
+   Matching AllDetailsImproved UI Design
+   =================================== */
+
+/* Root Variables - Matching AllDetailsImproved */
+:root {
+  --primary-color: #6366f1;
+  --primary-dark: #4f46e5;
+  --secondary-color: #ec4899;
+  --accent-color: #f59e0b;
+  --success-color: #10b981;
+  --bg-dark: #0f172a;
+  --bg-darker: #020617;
+  --bg-card: #1e293b;
+  --text-light: #f1f5f9;
+  --text-muted: #94a3b8;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===================================
+   HEADER CONTAINER
+   =================================== */
+.improved-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-width: 100vw;
+  z-index: 1000;
+  background: rgba(2, 6, 23, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(99, 102, 241, 0.15);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  transition: var(--transition);
+  overflow: visible;
+}
+
+.improved-header.mobile-menu-open {
+  height: auto;
+  min-height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.improved-header::after {
+  display: none;
+}
+
+.improved-header.scrolled {
+  background: rgba(2, 6, 23, 0.95);
+  box-shadow: 0 8px 40px rgba(99, 102, 241, 0.2);
+  border-bottom-color: rgba(99, 102, 241, 0.3);
+}
+
+.improved-header-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  overflow: visible;
+  max-width: 100%;
+  position: relative;
+  z-index: 10000;
+}
+
+/* ===================================
+   LOGO SECTION
+   =================================== */
+.improved-logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+
+.improved-logo:hover {
+  transform: translateY(-2px);
+}
+
+.logo-icon {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+}
+
+.logo-icon::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
+}
+
+.logo-letter {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: white;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.logo-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.logo-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-light);
+  margin: 0;
+  line-height: 1.2;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.logo-subtitle {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* ===================================
+   DESKTOP NAVIGATION
+   =================================== */
+.improved-nav-desktop {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  overflow: visible;
+  position: relative;
+  min-height: 80px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.improved-header.dropdown-active .improved-nav-desktop {
+  min-height: 400px;
+  align-items: flex-start;
+  padding-top: 0;
+}
+
+.improved-header.dropdown-active-skills .improved-nav-desktop {
+  min-height: 440px;
+}
+
+.improved-header.dropdown-active-contact .improved-nav-desktop {
+  min-height: 380px;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 0.5rem;
+  align-items: flex-start;
+  overflow: visible;
+  flex-wrap: wrap;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  border-radius: 10px;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.nav-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(236, 72, 153, 0.15));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 10px;
+  z-index: -1;
+}
+
+.nav-item:hover::before {
+  opacity: 1;
+}
+
+.nav-item:hover {
+  color: var(--text-light);
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+  transform: translateY(-2px);
+}
+
+.nav-item-icon {
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.nav-item:hover .nav-item-icon {
+  transform: scale(1.15);
+  color: var(--primary-color);
+}
+
+/* Active State for Nav Items */
+.nav-item.active {
+  color: var(--text-light);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.25), rgba(236, 72, 153, 0.25));
+  box-shadow: 0 0 25px rgba(99, 102, 241, 0.5), 0 4px 15px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(99, 102, 241, 0.4);
+}
+
+.nav-item.active::before {
+  opacity: 1;
+}
+
+.nav-item.active .nav-item-icon {
+  color: var(--primary-color);
+  transform: scale(1.15);
+  animation: bounce 0.5s ease;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: scale(1.15);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+}
+
+/* ===================================
+   DROPDOWN MENU STYLES
+   =================================== */
+.nav-dropdown-wrapper {
+  position: relative;
+  overflow: visible;
+}
+
+.nav-dropdown-wrapper:hover .nav-dropdown {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateX(-50%) translateY(0) !important;
+  pointer-events: auto !important;
+}
+
+.dropdown-arrow {
+  font-size: 0.7rem;
+  margin-left: 0.3rem;
+  transition: var(--transition);
+}
+
+.nav-item.dropdown-open .dropdown-arrow,
+.nav-dropdown-wrapper:hover .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+.nav-dropdown {
+  position: absolute;
+  top: calc(100% + 15px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px);
+  min-width: 300px;
+  max-width: 320px;
+  background: rgba(30, 41, 59, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 16px;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(99, 102, 241, 0.15);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.nav-dropdown.active {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateX(-50%) translateY(0) !important;
+  pointer-events: auto !important;
+}
+
+.nav-dropdown::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 12px;
+  height: 12px;
+  background: rgba(30, 41, 59, 0.95);
+  border-left: 1px solid rgba(99, 102, 241, 0.3);
+  border-top: 1px solid rgba(99, 102, 241, 0.3);
+  z-index: -1;
+}
+
+.dropdown-content {
+  padding: 0.5rem;
+  overflow: visible;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.dropdown-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 0;
+}
+
+.dropdown-item:hover::before {
+  opacity: 1;
+}
+
+.dropdown-item:hover {
+  transform: translateX(5px);
+  background: rgba(99, 102, 241, 0.05);
+}
+
+.dropdown-icon {
+  font-size: 1.8rem;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(236, 72, 153, 0.2));
+  border-radius: 12px;
+  flex-shrink: 0;
+  transition: var(--transition);
+  position: relative;
+  z-index: 1;
+}
+
+.dropdown-item:hover .dropdown-icon {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+}
+
+.dropdown-text {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.dropdown-text h4 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-light);
+  line-height: 1.3;
+}
+
+.dropdown-text p {
+  margin: 0.25rem 0 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.3;
+}
+
+.dropdown-item:hover .dropdown-text h4 {
+  color: var(--primary-color);
+}
+
+/* Skills Dropdown - Specific Styling */
+.skills-dropdown .dropdown-item {
+  padding: 0.875rem 1rem;
+}
+
+.skills-dropdown .dropdown-icon {
+  width: 40px;
+  height: 40px;
+  font-size: 1.5rem;
+}
+
+/* Contact Dropdown - Specific Styling */
+.contact-dropdown .dropdown-icon {
+  font-size: 1.5rem;
+}
+
+/* ===================================
+   HEADER ACTIONS
+   =================================== */
+.improved-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.improved-whatsapp-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1.75rem;
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.improved-whatsapp-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.5s, height 0.5s;
+}
+
+.improved-whatsapp-btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.improved-whatsapp-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 30px rgba(37, 211, 102, 0.5);
+}
+
+.improved-whatsapp-btn i {
+  font-size: 1.35rem;
+  animation: pulse-icon 2s ease-in-out infinite;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes pulse-icon {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+.whatsapp-text {
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.5px;
+  position: relative;
+  z-index: 1;
+}
+
+.whatsapp-pulse {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border-radius: 50%;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(255, 255, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+
+/* ===================================
+   MOBILE TOGGLE BUTTON
+   =================================== */
+.mobile-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 0.4rem;
+  background: rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: 10px;
+  padding: 0.65rem;
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.mobile-toggle::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(236, 72, 153, 0.2));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-toggle:hover::before {
+  opacity: 1;
+}
+
+.toggle-line {
+  width: 26px;
+  height: 3px;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  border-radius: 2px;
+  transition: var(--transition);
+  position: relative;
+  z-index: 1;
+}
+
+.mobile-toggle:hover {
+  background: rgba(99, 102, 241, 0.25);
+  border-color: rgba(99, 102, 241, 0.5);
+  transform: scale(1.05);
+}
+
+.mobile-toggle.active .toggle-line:nth-child(1) {
+  transform: rotate(45deg) translateY(10px);
+}
+
+.mobile-toggle.active .toggle-line:nth-child(2) {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.mobile-toggle.active .toggle-line:nth-child(3) {
+  transform: rotate(-45deg) translateY(-10px);
+}
+
+/* ===================================
+   MOBILE NAVIGATION
+   =================================== */
+/* Mobile Navigation */
+.improved-nav-mobile {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  height: 0;
+  opacity: 0;
+  visibility: hidden;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.95) 0%, rgba(118, 75, 162, 0.95) 100%);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.improved-nav-mobile.active {
+  height: auto;
+  min-height: calc(100vh - 80px);
+  opacity: 1;
+  visibility: visible;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Mobile menu expansion when dropdowns are open */
+.improved-nav-mobile.mobile-dropdown-active {
+  height: auto;
+  min-height: calc(100vh - 80px);
+}
+
+.improved-nav-mobile.mobile-dropdown-services,
+.improved-nav-mobile.mobile-dropdown-skills,
+.improved-nav-mobile.mobile-dropdown-why-choose,
+.improved-nav-mobile.mobile-dropdown-contact {
+  height: auto;
+  min-height: calc(100vh - 80px);
+}
+
+.mobile-nav-wrapper {
+  padding: 1rem 1rem 1.5rem 1rem;
+  flex: 1;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.mobile-nav-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-height: min-content;
+  flex: 1;
+  width: 100%;
+}
+
+.mobile-nav-menu > li {
+  width: 100%;
+  overflow: visible;
+  flex-shrink: 0;
+}
+
+.mobile-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 0.85rem;
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid rgba(99, 102, 241, 0.15);
+  border-radius: 8px;
+  color: var(--text-light);
+  text-decoration: none;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.mobile-nav-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.mobile-nav-item:hover::before,
+.mobile-nav-item:active::before {
+  left: 100%;
+}
+
+.mobile-nav-item:hover,
+.mobile-nav-item:active {
+  background: rgba(99, 102, 241, 0.2);
+  border-color: rgba(99, 102, 241, 0.4);
+  transform: translateX(5px);
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+}
+
+.mobile-nav-icon {
+  width: 38px;
+  height: 38px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(236, 72, 153, 0.2));
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: var(--transition);
+}
+
+.mobile-nav-item:hover .mobile-nav-icon,
+.mobile-nav-item:active .mobile-nav-icon {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  transform: rotate(5deg) scale(1.05);
+}
+
+.mobile-nav-icon i {
+  font-size: 1rem;
+  color: var(--text-light);
+}
+
+.mobile-nav-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.mobile-nav-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-light);
+  line-height: 1.2;
+}
+
+.mobile-nav-desc {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  line-height: 1.1;
+}
+
+/* Active State for Mobile Nav Items */
+.mobile-nav-item.active {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.3), rgba(236, 72, 153, 0.3));
+  border-color: rgba(99, 102, 241, 0.5);
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+  transform: translateX(5px);
+}
+
+.mobile-nav-item.active .mobile-nav-icon {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  transform: rotate(5deg) scale(1.05);
+  animation: pulse-scale 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-scale {
+  0%, 100% {
+    transform: rotate(5deg) scale(1.05);
+  }
+  50% {
+    transform: rotate(5deg) scale(1.1);
+  }
+}
+
+.mobile-nav-item.active .mobile-nav-title {
+  color: var(--text-light);
+  font-weight: 700;
+}
+
+.mobile-nav-item.active .mobile-nav-desc {
+  color: var(--primary-color);
+}
+
+/* Mobile Dropdown Styles */
+.mobile-nav-dropdown-wrapper {
+  width: 100%;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-dropdown-arrow {
+  margin-left: auto;
+  font-size: 0.75rem;
+  transition: transform 0.3s ease;
+  color: rgba(255, 255, 255, 0.7);
+  flex-shrink: 0;
+}
+
+.mobile-dropdown-arrow.open {
+  transform: rotate(180deg);
+  color: var(--primary-color);
+}
+
+.mobile-nav-item.dropdown-open {
+  background: rgba(99, 102, 241, 0.2);
+  border-color: rgba(99, 102, 241, 0.4);
+}
+
+.mobile-dropdown-content {
+  padding: 0.4rem 0 0.4rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  animation: slideDown 0.3s ease;
+  overflow: visible;
+  width: 100%;
+  margin-top: 0.4rem;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mobile-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.75rem 0.85rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 3px solid transparent;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.mobile-dropdown-item:hover,
+.mobile-dropdown-item:active {
+  background: rgba(99, 102, 241, 0.15);
+  border-left-color: var(--primary-color);
+  transform: translateX(5px);
+  box-shadow: 0 2px 10px rgba(99, 102, 241, 0.2);
+}
+
+.mobile-dropdown-icon {
+  font-size: 1.05rem;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(236, 72, 153, 0.2));
+  border-radius: 7px;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.mobile-dropdown-item:hover .mobile-dropdown-icon,
+.mobile-dropdown-item:active .mobile-dropdown-icon {
+  transform: scale(1.1) rotate(5deg);
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+}
+
+.mobile-dropdown-text {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-light);
+  line-height: 1.2;
+}
+
+.mobile-dropdown-item:hover .mobile-dropdown-text,
+.mobile-dropdown-item:active .mobile-dropdown-text {
+  color: var(--primary-color);
+}
+
+/* Mobile WhatsApp Section */
+.mobile-whatsapp-wrapper {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(99, 102, 241, 0.2);
+  flex-shrink: 0;
+}
+
+.mobile-whatsapp-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+}
+
+.mobile-whatsapp-btn:hover,
+.mobile-whatsapp-btn:active {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+}
+
+.mobile-whatsapp-btn i {
+  font-size: 1.3rem;
+  animation: pulse-icon 2s ease-in-out infinite;
+}
+
+/* Mobile Overlay */
+.mobile-overlay {
+  display: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ===================================
+   RESPONSIVE DESIGN
+   =================================== */
+@media (max-width: 1024px) {
+  .improved-header-container {
+    padding: 1rem 1.5rem;
+  }
+
+  .logo-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .logo-letter {
+    font-size: 1.5rem;
+  }
+
+  .logo-title {
+    font-size: 1.2rem;
+  }
+
+  .logo-subtitle {
+    font-size: 0.65rem;
+  }
+
+  .nav-item {
+    padding: 0.7rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .improved-whatsapp-btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .improved-header-container {
+    padding: 0.85rem 1.25rem;
+    gap: 1rem;
+  }
+
+  .improved-nav-desktop {
+    display: none;
+  }
+
+  .mobile-toggle {
+    display: flex;
+  }
+
+  .logo-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .logo-letter {
+    font-size: 1.35rem;
+  }
+
+  .logo-title {
+    font-size: 1.1rem;
+  }
+
+  .logo-subtitle {
+    font-size: 0.6rem;
+  }
+
+  .improved-whatsapp-btn .whatsapp-text {
+    display: none;
+  }
+
+  .improved-whatsapp-btn {
+    padding: 0.8rem;
+    width: 52px;
+    height: 52px;
+    justify-content: center;
+  }
+
+  .improved-whatsapp-btn i {
+    margin: 0;
+  }
+
+  .whatsapp-pulse {
+    top: -2px;
+    right: -2px;
+    width: 10px;
+    height: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .improved-header-container {
+    padding: 0.75rem 1rem;
+  }
+
+  .logo-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .logo-letter {
+    font-size: 1.2rem;
+  }
+
+  .logo-title {
+    font-size: 1rem;
+  }
+
+  .logo-subtitle {
+    font-size: 0.55rem;
+  }
+
+  .improved-whatsapp-btn {
+    width: 48px;
+    height: 48px;
+    padding: 0.7rem;
+  }
+
+  .improved-whatsapp-btn i {
+    font-size: 1.2rem;
+  }
+
+  .mobile-toggle {
+    padding: 0.55rem;
+  }
+
+  .toggle-line {
+    width: 22px;
+    height: 2.5px;
+  }
+
+  .improved-nav-mobile.active {
+    min-height: calc(100vh - 70px);
+  }
+
+  .improved-nav-mobile.mobile-dropdown-active,
+  .improved-nav-mobile.mobile-dropdown-services,
+  .improved-nav-mobile.mobile-dropdown-skills,
+  .improved-nav-mobile.mobile-dropdown-why-choose,
+  .improved-nav-mobile.mobile-dropdown-contact {
+    min-height: calc(100vh - 70px);
+  }
+
+  .mobile-nav-wrapper {
+    padding: 0.85rem 0.85rem 1.25rem 0.85rem;
+  }
+
+  .mobile-nav-menu {
+    gap: 0.45rem;
+  }
+
+  .mobile-nav-item {
+    padding: 0.75rem 0.75rem;
+  }
+
+  .mobile-nav-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .mobile-nav-icon i {
+    font-size: 0.95rem;
+  }
+
+  .mobile-nav-title {
+    font-size: 0.85rem;
+  }
+
+  .mobile-nav-desc {
+    font-size: 0.68rem;
+  }
+
+  .mobile-dropdown-content {
+    padding: 0.35rem 0 0.35rem 0.65rem;
+    gap: 0.35rem;
+  }
+
+  .mobile-dropdown-item {
+    padding: 0.65rem 0.75rem;
+  }
+
+  .mobile-dropdown-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 1rem;
+  }
+
+  .mobile-dropdown-text {
+    font-size: 0.75rem;
+  }
+
+  .mobile-whatsapp-wrapper {
+    margin-top: 1rem;
+    padding-top: 1rem;
+  }
+
+  .mobile-whatsapp-btn {
+    padding: 0.9rem;
+    font-size: 0.85rem;
+  }
+
+  .mobile-whatsapp-btn i {
+    font-size: 1.25rem;
+  }
+}
+
+/* Prevent horizontal overflow */
+.improved-header,
+.improved-header-container,
+.improved-nav-mobile {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
