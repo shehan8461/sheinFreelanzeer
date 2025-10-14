@@ -2613,7 +2613,32 @@ section {
   }
   
   .floating-badge {
-    display: none;
+    padding: 8px 14px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+  }
+
+  .floating-badge span {
+    font-size: 1.1rem;
+  }
+
+  .floating-badge p {
+    font-size: 0.7rem;
+  }
+
+  .badge-1 {
+    top: 8%;
+    right: -8%;
+  }
+
+  .badge-2 {
+    bottom: 18%;
+    left: -12%;
+  }
+
+  .badge-3 {
+    top: 58%;
+    right: -3%;
   }
   
   .stats-container {
@@ -2658,6 +2683,39 @@ section {
   
   .hero-subtitle {
     font-size: 1rem;
+  }
+
+  .image-wrapper {
+    width: 250px;
+    height: 250px;
+  }
+
+  .floating-badge {
+    padding: 6px 10px;
+    border-radius: 8px;
+  }
+
+  .floating-badge span {
+    font-size: 0.95rem;
+  }
+
+  .floating-badge p {
+    font-size: 0.65rem;
+  }
+
+  .badge-1 {
+    top: 5%;
+    right: -5%;
+  }
+
+  .badge-2 {
+    bottom: 15%;
+    left: -8%;
+  }
+
+  .badge-3 {
+    top: 55%;
+    right: 0%;
   }
   
   .btn-primary, .btn-secondary {

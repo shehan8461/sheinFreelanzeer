@@ -15,7 +15,7 @@ export default function Footer() {
         <div className='footer-top'>
           <div className='footer-column footer-about'>
             <div className='footer-logo'>
-              <h2>Shehan's Freelancing Hub</h2>
+              <h2>The Freelance Forge</h2>
               <div className='logo-underline'></div>
             </div>
             <p className='footer-description'>
@@ -66,7 +66,7 @@ export default function Footer() {
                 <div className='info-icon'>📧</div>
                 <div className='info-content'>
                   <span className='info-label'>Email</span>
-                  <a href='mailto:shehansalitha1999@gmail.com'>shehansalitha1999@gmail.com</a>
+                  <a href='mailto:shehanfreelanzer@gmail.com'>shehanfreelanzer@gmail.com</a>
                 </div>
               </div>
               <div className='footer-info-item'>
@@ -91,7 +91,7 @@ export default function Footer() {
         <div className='footer-bottom'>
           <div className='footer-bottom-content'>
             <p className='copyright'>
-              © 2024 Shehan's Freelancing Hub. All rights reserved.
+              © 2025 Shehan's Freelancing Hub. All rights reserved.
             </p>
             <div className='footer-bottom-links'>
               <a href='#privacy'>Privacy Policy</a>
@@ -99,7 +99,7 @@ export default function Footer() {
               <a href='#terms'>Terms of Service</a>
             </div>
             <p className='designed-by'>
-              Designed & Developed by <span className='highlight-name'>Shehan Salitha Dilshan</span>
+              Designed & Developed by <span className='highlight-name'>Shehan</span>
             </p>
           </div>
         </div>

@@ -134,7 +134,7 @@ export default function ImprovedHeader() {
             <span className="logo-letter">S</span>
           </div>
           <div className="logo-content">
-            <h1 className="logo-title">Shehan's Hub</h1>
+            <h1 className="logo-title">Code & Create by Shein</h1>
             <p className="logo-subtitle">Freelancing Excellence</p>
           </div>
         </Link>

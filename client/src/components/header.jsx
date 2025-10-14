@@ -16,7 +16,7 @@ export default function Header() {
     <div className="nav">
       <div className="navbardetails">
         <Link to="/">
-          <h1 className="twebpagename"><b>Shehan's Freelancing Hub</b></h1>
+          <h1 className="twebpagename"><b>Shein's Freelancing Hub</b></h1>
         </Link>
        
         <h3 id="h3">Delivering Excellence in Web Development and Design</h3>
