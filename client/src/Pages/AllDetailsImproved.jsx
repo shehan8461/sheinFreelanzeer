@@ -27,6 +27,7 @@ export default function AllDetailsImproved() {
   const [uiDesigns, setUiDesigns] = useState(0);
   const [projects, setProjects] = useState(0);
   const [validationErrors, setValidationErrors] = useState({});
+  const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
     phone_number: "",
@@ -173,6 +174,25 @@ export default function AllDetailsImproved() {
     }
   };
 
+  // Scroll to contact form and momentarily highlight the Send Message button
+  const handleRequestCustomService = () => {
+    // Scroll to contact form first
+    scrollToContact();
+
+    // After scrolling animation, focus and add a temporary highlight class to the button
+    // small timeout to allow scrollIntoView to complete
+    setTimeout(() => {
+      const sendBtn = document.querySelector('.btn-submit-enhanced');
+      if (sendBtn) {
+        // focus without scrolling again
+        try { sendBtn.focus({ preventScroll: true }); } catch (err) { sendBtn.focus(); }
+        sendBtn.classList.add('highlight-once');
+        // remove the highlight after animation duration
+        setTimeout(() => sendBtn.classList.remove('highlight-once'), 1600);
+      }
+    }, 600);
+  };
+
   return (
     <div className='improved-home'>
       {/* Hero Section */}
@@ -237,7 +257,9 @@ export default function AllDetailsImproved() {
         <div className='stats-container'>
           <div className='stat-card stat-card-1'>
             <div className='stat-icon-wrapper'>
-              <div className='stat-icon'>🎨</div>
+              <div className='stat-icon'>
+                <img src={web} alt='Web Designs' />
+              </div>
             </div>
             <div className='stat-content'>
               <h3 className='stat-number'>{webDesigns}+</h3>
@@ -250,7 +272,9 @@ export default function AllDetailsImproved() {
           </div>
           <div className='stat-card stat-card-2'>
             <div className='stat-icon-wrapper'>
-              <div className='stat-icon'>✨</div>
+              <div className='stat-icon'>
+                <img src={figma} alt='UI Designs' />
+              </div>
             </div>
             <div className='stat-content'>
               <h3 className='stat-number'>{uiDesigns}+</h3>
@@ -263,7 +287,9 @@ export default function AllDetailsImproved() {
           </div>
           <div className='stat-card stat-card-3'>
             <div className='stat-icon-wrapper'>
-              <div className='stat-icon'>🚀</div>
+              <div className='stat-icon'>
+                <img src={react} alt='Total Projects' />
+              </div>
             </div>
             <div className='stat-content'>
               <h3 className='stat-number'>{projects}+</h3>
@@ -356,7 +382,9 @@ export default function AllDetailsImproved() {
           <div className='service-card-enhanced service-1'>
             <div className='service-background-glow'></div>
             <div className='service-icon-wrapper'>
-              <div className='service-icon'>🎨</div>
+              <div className='service-icon'>
+                <img src={web} alt='Web Design' />
+              </div>
             </div>
             <div className='service-content'>
               <h3>Web Design</h3>
@@ -382,7 +410,9 @@ export default function AllDetailsImproved() {
             </div>
             <div className='service-background-glow'></div>
             <div className='service-icon-wrapper'>
-              <div className='service-icon'>💼</div>
+              <div className='service-icon'>
+                <img src={react} alt='Full Stack Development' />
+              </div>
             </div>
             <div className='service-content'>
               <h3>Full Stack Development</h3>
@@ -404,7 +434,9 @@ export default function AllDetailsImproved() {
           <div className='service-card-enhanced service-3'>
             <div className='service-background-glow'></div>
             <div className='service-icon-wrapper'>
-              <div className='service-icon'>✨</div>
+              <div className='service-icon'>
+                <img src={figma} alt='UI/UX Design' />
+              </div>
             </div>
             <div className='service-content'>
               <h3>UI/UX Design</h3>
@@ -426,7 +458,9 @@ export default function AllDetailsImproved() {
           <div className='service-card-enhanced service-4'>
             <div className='service-background-glow'></div>
             <div className='service-icon-wrapper'>
-              <div className='service-icon'>🚀</div>
+              <div className='service-icon'>
+                <img src={laravel} alt='Software Solutions' />
+              </div>
             </div>
             <div className='service-content'>
               <h3>Software Solutions</h3>
@@ -447,7 +481,7 @@ export default function AllDetailsImproved() {
         </div>
         <div className='services-footer-cta'>
           <p>Can't find what you're looking for?</p>
-          <button className='custom-service-btn'>Request Custom Service</button>
+          <button className='custom-service-btn' onClick={handleRequestCustomService}>Request Custom Service</button>
         </div>
       </section>
 
@@ -468,7 +502,9 @@ export default function AllDetailsImproved() {
           <div className='benefits-grid-enhanced'>
             <div className='benefit-card benefit-1'>
               <div className='benefit-icon-wrapper'>
-                <div className='benefit-icon'>🎯</div>
+                <div className='benefit-icon'>
+                  <img src={contact} alt='Client-Centric' />
+                </div>
                 <div className='benefit-glow'></div>
               </div>
               <div className='benefit-number'>01</div>
@@ -486,7 +522,9 @@ export default function AllDetailsImproved() {
             
             <div className='benefit-card benefit-2'>
               <div className='benefit-icon-wrapper'>
-                <div className='benefit-icon'>💎</div>
+                <div className='benefit-icon'>
+                  <img src={tailwind} alt='Expert Talent' />
+                </div>
                 <div className='benefit-glow'></div>
               </div>
               <div className='benefit-number'>02</div>
@@ -504,7 +542,9 @@ export default function AllDetailsImproved() {
             
             <div className='benefit-card benefit-3'>
               <div className='benefit-icon-wrapper'>
-                <div className='benefit-icon'>💰</div>
+                <div className='benefit-icon'>
+                  <img src={sql} alt='Cost-Effective' />
+                </div>
                 <div className='benefit-glow'></div>
               </div>
               <div className='benefit-number'>03</div>
@@ -522,7 +562,9 @@ export default function AllDetailsImproved() {
             
             <div className='benefit-card benefit-4'>
               <div className='benefit-icon-wrapper'>
-                <div className='benefit-icon'>🚀</div>
+                <div className='benefit-icon'>
+                  <img src={nextJs} alt='Future-Ready' />
+                </div>
                 <div className='benefit-glow'></div>
               </div>
               <div className='benefit-number'>04</div>
@@ -561,7 +603,7 @@ export default function AllDetailsImproved() {
           <div className='why-choose-cta'>
             <h3>Ready to Start Your Journey?</h3>
             <p>Let's transform your ideas into powerful digital solutions</p>
-            <button className='cta-btn-primary'>
+            <button className='cta-btn-primary' onClick={() => setShowModal(true)}>
               <span>Get Started Now</span>
               <span className='btn-icon'>→</span>
             </button>
@@ -897,6 +939,83 @@ export default function AllDetailsImproved() {
           </div>
         </div>
       </section>
+
+      {/* Modal Popup */}
+      {showModal && (
+        <div className='modal-overlay' onClick={() => setShowModal(false)}>
+          <div className='modal-content' onClick={(e) => e.stopPropagation()}>
+            <button className='modal-close-btn' onClick={() => setShowModal(false)}>
+              ×
+            </button>
+            
+            <div className='modal-header'>
+              <div className='modal-icon'>🚀</div>
+              <h2 className='modal-title'>Let's Start Your Project!</h2>
+              <p className='modal-subtitle'>Choose how you'd like to begin your journey with us</p>
+            </div>
+            
+            <div className='modal-body'>
+              <div className='modal-benefits'>
+                <div className='modal-benefit-item'>
+                  <div className='modal-benefit-icon'>💼</div>
+                  <div className='modal-benefit-text'>
+                    <h4>Professional Service</h4>
+                    <p>Expert web design & development tailored to your needs</p>
+                  </div>
+                </div>
+                
+                <div className='modal-benefit-item'>
+                  <div className='modal-benefit-icon'>⚡</div>
+                  <div className='modal-benefit-text'>
+                    <h4>Fast Delivery</h4>
+                    <p>Quick turnaround time without compromising quality</p>
+                  </div>
+                </div>
+                
+                <div className='modal-benefit-item'>
+                  <div className='modal-benefit-icon'>🎯</div>
+                  <div className='modal-benefit-text'>
+                    <h4>100% Satisfaction</h4>
+                    <p>We don't stop until you're completely happy</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className='modal-stats'>
+                <div className='modal-stat-item'>
+                  <span className='modal-stat-number'>500+</span>
+                  <span className='modal-stat-label'>Happy Clients</span>
+                </div>
+                <div className='modal-stat-item'>
+                  <span className='modal-stat-number'>2+</span>
+                  <span className='modal-stat-label'>Years Exp</span>
+                </div>
+                <div className='modal-stat-item'>
+                  <span className='modal-stat-number'>24/7</span>
+                  <span className='modal-stat-label'>Support</span>
+                </div>
+              </div>
+              
+              <div className='modal-actions'>
+                <button className='modal-btn-primary' onClick={() => {
+                  setShowModal(false);
+                  scrollToContact();
+                }}>
+                  <span>📧</span>
+                  <span>Contact Us</span>
+                </button>
+                <button className='modal-btn-secondary' onClick={() => {
+                  setShowModal(false);
+                  scrollToPortfolio();
+                }}>
+                  <span>👀</span>
+                  <span>View Services</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
