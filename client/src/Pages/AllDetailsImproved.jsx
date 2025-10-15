@@ -349,9 +349,8 @@ export default function AllDetailsImproved() {
                   <span className='skill-level'>{skill.level}</span>
                   <div className='skill-progress-container'>
                     <div className='skill-progress-bg'>
-                      <div className='skill-progress-fill' style={{ width: skill.percentage }}>
-                        <span className='skill-percentage'>{skill.percentage}</span>
-                      </div>
+                      <div className='skill-progress-fill' style={{ width: skill.percentage }}></div>
+                      <span className='skill-percentage' aria-hidden='false'>{skill.percentage}</span>
                     </div>
                   </div>
                 </div>

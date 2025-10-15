@@ -823,8 +823,8 @@ section {
   height: 8px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
-  overflow: hidden;
-  position: relative;
+  overflow: visible; /* allow pill to visually overlap */
+  position: relative; /* anchor for absolute-centered percentage */
 }
 
 .skill-progress-fill {
@@ -856,12 +856,33 @@ section {
 }
 
 .skill-percentage {
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: white;
-  position: relative;
-  z-index: 1;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #0b0b0b; /* dark text for contrast on white pill */
+  position: absolute; /* center inside .skill-progress-bg */
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  background: #ffffff;
+  padding: 6px 10px;
+  border-radius: 999px;
+  box-shadow: 0 8px 20px rgba(2, 6, 23, 0.12);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-variant-numeric: tabular-nums;
+}
+
+.skill-percentage::before {
+  /* small colored accent dot using the skill color */
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--skill-color);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  display: inline-block;
 }
 
 .skill-hover-effect {
@@ -1902,7 +1923,8 @@ section {
     max-width: 420px; /* cap modal width */
     width: calc(100% - 40px); /* leave comfortable gutters on both sides */
     margin: 0 auto;
-    max-height: calc(100vh - 60px);
+    /* cap height relative to viewport so modal doesn't feel tall on tablet/large phones */
+    max-height: 70vh;
   }
 
   .modal-header {
@@ -1925,7 +1947,8 @@ section {
 
   .modal-body {
     padding: 25px 20px;
-    max-height: calc(100vh - 200px);
+    /* allow body to scroll inside the capped modal; leave room for header/footer */
+    max-height: calc(70vh - 120px);
   }
 
   .modal-benefit-item {
@@ -1976,7 +1999,8 @@ section {
     max-width: 360px;
     width: calc(100% - 30px);
     margin: 0 auto;
-    max-height: calc(100vh - 40px);
+    /* shorter modal on small phones */
+    max-height: 60vh;
   }
 
   .modal-header {
@@ -1996,7 +2020,7 @@ section {
 
   .modal-body {
     padding: 20px 15px;
-    max-height: calc(100vh - 180px);
+    max-height: calc(60vh - 110px);
   }
 
   .modal-benefit-item {
@@ -2016,6 +2040,20 @@ section {
     top: 15px;
     right: 15px;
     font-size: 1.3rem;
+  }
+
+  /* center the percentage pill and add breathing space on very small screens */
+  .skill-progress-bg {
+    padding-bottom: 14px; /* space for the pill */
+  }
+  .skill-percentage {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 8px 24px rgba(2,6,23,0.16);
+    font-size: 0.72rem;
+    padding: 5px 8px;
   }
 }
 
@@ -3144,13 +3182,17 @@ section {
   }
 
   .skill-percentage {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     font-weight: 800;
-    color: white;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 8px rgba(0, 0, 0, 0.6);
-    background: rgba(0, 0, 0, 0.3);
-    padding: 2px 6px;
-    border-radius: 4px;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9), 0 0 8px rgba(0, 0, 0, 0.7);
+    /* stronger background on smaller viewports for contrast */
+    background: rgba(0, 0, 0, 0.55);
+    padding: 3px 7px;
+    border-radius: 6px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+    z-index: 3;
+    display: inline-block;
   }
 
   .skill-progress-fill {
@@ -3344,13 +3386,29 @@ section {
   }
 
   .skill-percentage {
-    font-size: 0.65rem;
-    font-weight: 900;
-    color: white;
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.9), 0 0 10px rgba(0, 0, 0, 0.7);
-    background: rgba(0, 0, 0, 0.4);
-    padding: 2px 5px;
-    border-radius: 3px;
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: #0b0b0b;
+    text-shadow: none;
+    background: #ffffff;
+    padding: 6px 10px 6px 10px;
+    border-radius: 999px;
+    box-shadow: 0 8px 20px rgba(2, 6, 23, 0.12);
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .skill-percentage::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--skill-color);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    display: inline-block;
   }
 
   .skill-progress-fill {
