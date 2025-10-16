@@ -2584,8 +2584,8 @@ section {
 .contact-card {
   display: flex;
   align-items: center;
-  gap: 20px;
-  padding: 28px;
+  gap: 25px;
+  padding: 35px;
   background: var(--bg-card);
   border-radius: 20px;
   border: 2px solid transparent;
@@ -2616,30 +2616,77 @@ section {
 }
 
 .contact-icon-wrapper {
-  width: 70px;
-  height: 70px;
+  width: 85px;
+  height: 85px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--gradient-1);
-  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(99,102,241,0.12), rgba(236,72,153,0.08));
+  border-radius: 50%; /* make fully circular */
   flex-shrink: 0;
-  transition: var(--transition);
+  transition: transform 0.36s cubic-bezier(.2,.9,.2,1), box-shadow 0.36s ease;
   position: relative;
   z-index: 1;
+  box-shadow: 0 8px 20px rgba(2,6,23,0.35);
+  overflow: visible;
 }
 
 .contact-card:hover .contact-icon-wrapper {
-  transform: scale(1.1) rotate(-5deg);
-  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+  transform: translateY(-6px) scale(1.06) rotate(-6deg);
+  box-shadow: 0 18px 40px rgba(2,6,23,0.45);
 }
 
 .contact-icon-wrapper .contact-icon {
-  font-size: 2rem;
-  background: none;
-  border-radius: 0;
-  width: auto;
-  height: auto;
+  font-size: 1.9rem; /* large emoji/icon */
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+  color: white; /* ensures contrast for text-based icons */
+  box-shadow: inset 0 -6px 12px rgba(0,0,0,0.18);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.contact-icon-wrapper .contact-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+/* Per-card color accents (phone, email, location) using nth-child for predictable ordering */
+.contact-details-grid .contact-card:nth-child(1) .contact-icon-wrapper {
+  background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%); /* phone: teal -> blue */
+}
+.contact-details-grid .contact-card:nth-child(2) .contact-icon-wrapper {
+  background: linear-gradient(135deg, #f973b2 0%, #7c3aed 100%); /* email: pink -> purple */
+}
+.contact-details-grid .contact-card:nth-child(3) .contact-icon-wrapper {
+  background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%); /* location: amber -> red */
+}
+
+/* Small shine accent */
+.contact-icon-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 8%;
+  left: 18%;
+  width: 40%;
+  height: 30%;
+  background: rgba(255,255,255,0.12);
+  transform: rotate(-25deg);
+  filter: blur(6px);
+  border-radius: 8px;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+/* Tweak for very small screens (keeps existing mobile override harmony) */
+@media (max-width: 480px) {
+  .contact-icon-wrapper { width: 60px !important; height: 60px !important; }
+  .contact-icon-wrapper .contact-icon { width: 44px; height: 44px; font-size: 1.5rem; }
 }
 
 .contact-card-content {
@@ -2649,30 +2696,34 @@ section {
 }
 
 .contact-card-content h4 {
-  font-size: 0.95rem;
+  font-size: 1.1rem;
   color: var(--text-muted);
-  margin-bottom: 5px;
+  margin-bottom: 8px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   font-weight: 600;
 }
 
 .contact-card-content p {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   color: var(--text-light);
   font-weight: 700;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
+  /* Allow long words (like emails) to wrap on small screens instead of overflowing/being clipped */
+  white-space: normal;
+  overflow-wrap: anywhere; /* favor breaking long strings to avoid overflow */
+  word-break: break-word; /* fallback for some browsers */
 }
 
 .contact-availability {
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: var(--primary-color);
   font-weight: 600;
   display: inline-block;
-  padding: 4px 12px;
+  padding: 6px 16px;
   background: rgba(99, 102, 241, 0.1);
   border-radius: 12px;
-  margin-top: 5px;
+  margin-top: 8px;
 }
 
 .contact-benefits {
@@ -2753,6 +2804,8 @@ section {
 .form-row {
   display: flex;
   gap: 20px;
+  align-items: stretch; /* ensure inputs align consistently */
+  justify-content: flex-start; /* prevent accidental right-alignment */
 }
 
 .form-group-enhanced {
@@ -2769,10 +2822,38 @@ section {
   color: var(--text-light);
   font-size: 0.95rem;
   font-weight: 600;
+  justify-content: flex-start; /* keep label contents (icon + text) left-aligned */
+  text-align: left; /* explicit left text alignment for label */
 }
 
 .label-icon {
   font-size: 1.1rem;
+}
+
+/* Stronger alignment guarantees for the contact form rows
+   - ensure labels and inputs never get pushed to the right by other rules
+   - add a phone-specific override in case an external selector targets it */
+.modern-form-enhanced .form-row {
+  justify-content: flex-start !important;
+  align-items: stretch !important;
+}
+
+.modern-form-enhanced .form-row .form-group-enhanced {
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.modern-form-enhanced .form-row .form-group-enhanced label[for="phone"] {
+  justify-content: flex-start !important;
+  text-align: left !important;
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+.modern-form-enhanced .form-row .form-group-enhanced input#phone {
+  margin-left: 0 !important;
+  padding-left: 12px !important; /* keep input padding consistent */
 }
 
 .form-group-enhanced input,
@@ -3105,6 +3186,7 @@ section {
   
   .contact-container {
     grid-template-columns: 1fr;
+    margin: 0 auto;
   }
 }
 
@@ -3555,5 +3637,75 @@ img {
   section {
     padding-left: 10px;
     padding-right: 10px;
+  }
+}
+
+/* Stronger mobile tweaks: make contact area centered and smaller on very small screens */
+@media (max-width: 480px) {
+  .contact-container {
+    grid-template-columns: 1fr !important; /* stack */
+    justify-items: center !important;      /* center children */
+    padding-left: 6px !important;
+    padding-right: 6px !important;
+    gap: 12px !important;
+  }
+
+  .contact-info-enhanced,
+  .contact-form-enhanced {
+    width: 100% !important;
+    max-width: 320px !important; /* tighter mobile width */
+    margin: 0 auto !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+
+  .contact-form-enhanced {
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+  }
+
+  /* reduce form element spacing and sizes for compact mobile view */
+  .form-header h3 { font-size: 1.1rem !important; }
+  .form-header p { font-size: 0.8rem !important; }
+  .form-group-enhanced input,
+  .form-group-enhanced textarea { padding: 10px 12px !important; font-size: 0.88rem !important; }
+  .form-group-enhanced textarea { min-height: 110px !important; }
+
+  .btn-submit-enhanced { padding: 10px !important; font-size: 0.9rem !important; }
+
+  /* compact contact cards and icons */
+  .contact-card { padding: 20px !important; }
+  .contact-icon-wrapper { width: 60px !important; height: 60px !important; }
+  .contact-card-content p { font-size: 1.1rem !important; }
+}
+
+/* Fix: ensure contact container is centered on mobile devices
+   Some absolute/negative positioned badges can create visual horizontal
+   offsets — force the contact grid to be full-width and center its children
+   so the contact area is visually centered on small screens. */
+@media (max-width: 768px) {
+  .contact-container {
+    grid-template-columns: 1fr !important; /* stack columns */
+    margin: 0 auto !important;             /* center container */
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    justify-items: center;                 /* center children inside grid */
+  }
+
+  .contact-info-enhanced,
+  .contact-form-enhanced {
+    width: 100% !important;
+    max-width: 720px;      /* keep nice readable line-length */
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box;
+  }
+
+  /* ensure the form itself doesn't get extra left offsets */
+  .contact-form-enhanced {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
   }
 }
