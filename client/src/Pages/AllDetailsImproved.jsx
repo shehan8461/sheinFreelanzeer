@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './css/alldetailsimproved.css';
-import logo from './Images/newProfile.png';
+import logo from './Images/newmy1.jpeg';
 import logo1 from './Images/people.jpg';
 import logo2 from './Images/pixeles.jpg';
 import logo3 from './Images/responsive.jpg';
