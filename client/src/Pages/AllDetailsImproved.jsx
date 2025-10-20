@@ -16,6 +16,7 @@ import sql from './Images/sql.png';
 import tailwind from './Images/tailwind.png';
 import packettracer from './Images/packettracer.png';
 import figma from './Images/figma.png';
+import mobile from './Images/cross-platform.jpg';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -36,6 +37,7 @@ export default function AllDetailsImproved() {
     message: "",
   });
   const [loading, setLoading] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
     const scrollToContact = () => {
     console.log('Scroll to contact triggered');
@@ -94,6 +96,21 @@ export default function AllDetailsImproved() {
     }
   };
 
+  const scrollToTop = () => {
+    const profileImg = document.getElementById('profile-img');
+    if (profileImg) {
+      profileImg.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
+    } else {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   const animateCount = (setter, target, duration) => {
     let start = 0;
     const increment = target / (duration / 10);
@@ -112,6 +129,16 @@ export default function AllDetailsImproved() {
     animateCount(setWebDesigns, 40, 7000);
     animateCount(setUiDesigns, 15, 8000);
     animateCount(setProjects, 70, 9000);
+  }, []);
+
+  // Scroll to top button visibility
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const validateForm = () => {
@@ -214,7 +241,7 @@ export default function AllDetailsImproved() {
           </div>
           <div className='hero-image'>
             <div className='image-wrapper'>
-              <img src={logo} alt='Shehan Freelancing' className='profile-img' />
+              <img src={logo} alt='Shehan Freelancing' className='profile-img' id='profile-img' />
               <div className='floating-badge badge-1'>
                 <span>2+ Years</span>
                 <p>Experience</p>
@@ -329,19 +356,23 @@ export default function AllDetailsImproved() {
         </div>
         <div className='skills-grid'>
           {[
-            { img: react, name: 'React', color: '#61dafb', level: 'Expert', percentage: '95%' },
+            { img: react, name: 'React', color: '#61dafb', level: 'Expert', percentage: '100%' },
             { img: figma, name: 'Figma', color: '#f24e1e', level: 'Advanced', percentage: '90%' },
             { img: angular, name: 'Angular', color: '#dd0031', level: 'Advanced', percentage: '85%' },
             { img: nextJs, name: 'Next.js', color: '#000000', level: 'Expert', percentage: '92%' },
             { img: sql, name: 'SQL', color: '#4479a1', level: 'Expert', percentage: '88%' },
-            { img: packettracer, name: 'Packet Tracer', color: '#0071c5', level: 'Intermediate', percentage: '75%' },
             { img: laravel, name: 'Laravel', color: '#ff2d20', level: 'Advanced', percentage: '87%' },
             { img: tailwind, name: 'Tailwind', color: '#06b6d4', level: 'Expert', percentage: '93%' },
+            { img: mobile, name: 'Mobile Application', color: '#a855f7', level: 'Advanced', percentage: '85%' },
           ].map((skill, index) => (
             <div key={index} className='skill-card-enhanced' style={{ '--skill-color': skill.color, '--delay': `${index * 0.1}s` }}>
               <div className='skill-card-inner'>
                 <div className='skill-icon-container'>
-                  <img src={skill.img} alt={skill.name} />
+                  <img 
+                    src={skill.img} 
+                    alt={skill.name} 
+                    className={skill.name === 'Mobile Development' ? 'skill-icon-large' : ''} 
+                  />
                   <div className='skill-glow'></div>
                 </div>
                 <div className='skill-info'>
@@ -1014,6 +1045,17 @@ export default function AllDetailsImproved() {
             </div>
           </div>
         </div>
+      )}
+
+      {/* Scroll to Top Button */}
+      {showScrollTop && (
+        <button 
+          className='scroll-to-top-btn' 
+          onClick={scrollToTop}
+          aria-label='Scroll to top'
+        >
+          <i className='fas fa-arrow-up'></i>
+        </button>
       )}
     </div>
   );

@@ -43,7 +43,6 @@ export default function Footer() {
               <li><Link to='/'>Home</Link></li>
               <li><Link to='/about'>About</Link></li>
               <li><a href='#services'>Services</a></li>
-              <li><a href='#portfolio'>Portfolio</a></li>
               <li><a href='#contact'>Contact</a></li>
             </ul>
           </div>
@@ -55,7 +54,6 @@ export default function Footer() {
               <li><a href='#services'>Full Stack Development</a></li>
               <li><a href='#services'>UI/UX Design</a></li>
               <li><a href='#services'>Software Solutions</a></li>
-              <li><a href='#services'>Consulting</a></li>
             </ul>
           </div>
 

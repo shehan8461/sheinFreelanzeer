@@ -129,7 +129,7 @@ export default function ImprovedHeader() {
     <header className={getHeaderClass()}>
       <div className="improved-header-container">
         {/* Logo Section */}
-        <Link to="/" className="improved-logo" onClick={closeMenu}>
+        <div className="improved-logo" onClick={() => window.location.reload()} style={{cursor: 'pointer'}}>
           <div className="logo-icon">
             <span className="logo-letter">S</span>
           </div>
@@ -137,7 +137,7 @@ export default function ImprovedHeader() {
             <h1 className="logo-title">Code & Create by Shein</h1>
             <p className="logo-subtitle">Freelancing Excellence</p>
           </div>
-        </Link>
+        </div>
 
         {/* Desktop Navigation */}
         <nav className="improved-nav-desktop">
