@@ -147,7 +147,18 @@ section {
 }
 
 .hero-text {
-  animation: fadeInUp 1s ease-out;
+  /* Remove default animation, will be controlled by visibility classes */
+}
+
+.hero-text > * {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: none;
+}
+
+.hero-text > .hero-element-visible {
+  animation: heroElementFadeIn 1s ease-out forwards;
+  animation-delay: var(--delay, 0s);
 }
 
 .hero-title {
@@ -231,8 +242,15 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: fadeInRight 1s ease-out;
+  opacity: 0;
+  transform: translateX(50px);
+  transition: none;
   z-index: 2;
+}
+
+.hero-image.hero-element-visible {
+  animation: heroImageSlideIn 1s ease-out forwards;
+  animation-delay: var(--delay, 0s);
 }
 
 .image-wrapper {
@@ -684,8 +702,25 @@ section {
   position: relative;
   overflow: hidden;
   cursor: pointer;
-  animation: fadeInUp 0.6s ease-out both;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.skill-card-enhanced.skill-card-visible {
+  animation: skillCardFadeIn 1.2s ease-out both;
   animation-delay: var(--delay);
+}
+
+@keyframes skillCardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(50px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .skill-card-enhanced::before {
@@ -995,14 +1030,27 @@ section {
   border: 2px solid transparent;
   position: relative;
   overflow: hidden;
-  animation: fadeInUp 0.6s ease-out both;
   cursor: pointer;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
-.service-1 { animation-delay: 0.1s; }
-.service-2 { animation-delay: 0.2s; }
-.service-3 { animation-delay: 0.3s; }
-.service-4 { animation-delay: 0.4s; }
+.service-card-enhanced.service-card-visible {
+  animation: serviceCardFadeIn 1.2s ease-out both;
+  animation-delay: var(--delay);
+}
+
+@keyframes serviceCardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(50px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
 
 .service-background-glow {
   position: absolute;
@@ -2113,12 +2161,11 @@ section {
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   border: 2px solid transparent;
   position: relative;
-  animation: fadeInUp 0.6s ease-out both;
 }
 
-.tip-1 { animation-delay: 0.1s; }
-.tip-2 { animation-delay: 0.2s; }
-.tip-3 { animation-delay: 0.3s; }
+.tip-card-modern.tip-card-visible {
+  /* Animation handled by child elements */
+}
 
 .tip-card-modern::before {
   content: '';
@@ -2147,6 +2194,25 @@ section {
   position: relative;
   height: 280px;
   overflow: hidden;
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.tip-card-modern.tip-card-visible .tip-image-wrapper {
+  animation: tipImageSlideIn 1.5s ease-out both;
+  animation-delay: var(--delay);
+}
+
+@keyframes tipImageSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
 }
 
 .tip-image-wrapper img {
@@ -2211,6 +2277,25 @@ section {
   padding: 35px;
   position: relative;
   z-index: 1;
+  opacity: 0;
+  transform: translateX(50px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.tip-card-modern.tip-card-visible .tip-content-wrapper {
+  animation: tipContentSlideIn 1.5s ease-out both;
+  animation-delay: calc(var(--delay) + 0.3s);
+}
+
+@keyframes tipContentSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .tip-category {
@@ -3713,6 +3798,60 @@ img {
     padding-left: 20px !important;
     padding-right: 20px !important;
   }
+
+  /* Hide contact details and benefits on mobile */
+  .contact-details-grid,
+  .contact-benefits {
+    display: none !important;
+  }
+}
+
+/* ===================================
+   HERO SECTION ANIMATIONS
+   =================================== */
+
+@keyframes heroElementFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroImageSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes badgeFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.floating-badge {
+  opacity: 0;
+  transform: scale(0.8) translateY(20px);
+  transition: none;
+}
+
+.floating-badge.badge-visible {
+  animation: badgeFadeIn 0.8s ease-out forwards;
+  animation-delay: var(--delay, 0s);
 }
 
 /* ===================================

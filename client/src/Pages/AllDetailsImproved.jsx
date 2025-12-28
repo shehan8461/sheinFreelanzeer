@@ -38,6 +38,10 @@ export default function AllDetailsImproved() {
   });
   const [loading, setLoading] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [heroVisible, setHeroVisible] = useState(false);
+  const [skillsVisible, setSkillsVisible] = useState(false);
+  const [servicesVisible, setServicesVisible] = useState(false);
+  const [tipsVisible, setTipsVisible] = useState(false);
 
     const scrollToContact = () => {
     console.log('Scroll to contact triggered');
@@ -141,6 +145,106 @@ export default function AllDetailsImproved() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Intersection Observer for Hero Section
+  useEffect(() => {
+    const heroSection = document.getElementById('hero-section');
+    if (!heroSection) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setHeroVisible(true);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(heroSection);
+
+    return () => {
+      if (heroSection) {
+        observer.unobserve(heroSection);
+      }
+    };
+  }, []);
+
+  // Intersection Observer for Skills Section
+  useEffect(() => {
+    const skillsSection = document.getElementById('skills');
+    if (!skillsSection) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setSkillsVisible(true);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(skillsSection);
+
+    return () => {
+      if (skillsSection) {
+        observer.unobserve(skillsSection);
+      }
+    };
+  }, []);
+
+  // Intersection Observer for Services Section
+  useEffect(() => {
+    const servicesSection = document.getElementById('services');
+    if (!servicesSection) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setServicesVisible(true);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(servicesSection);
+
+    return () => {
+      if (servicesSection) {
+        observer.unobserve(servicesSection);
+      }
+    };
+  }, []);
+
+  // Intersection Observer for Tips Section
+  useEffect(() => {
+    const tipsSection = document.querySelector('.tips-section');
+    if (!tipsSection) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setTipsVisible(true);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(tipsSection);
+
+    return () => {
+      if (tipsSection) {
+        observer.unobserve(tipsSection);
+      }
+    };
+  }, []);
+
   const validateForm = () => {
     let errors = {};
     if (!formData.username) errors.username = "Name is required";
@@ -226,31 +330,31 @@ export default function AllDetailsImproved() {
       <section className='hero-section' id='hero-section'>
         <div className='hero-content'>
           <div className='hero-text'>
-            <h1 className='hero-title'>
+            <h1 className={`hero-title ${heroVisible ? 'hero-element-visible' : ''}`} style={{ '--delay': '0s' }}>
               <span className='gradient-text'>Transform Your Vision</span>
               <br />Into Digital Reality
             </h1>
-            <p className='hero-subtitle'>
+            <p className={`hero-subtitle ${heroVisible ? 'hero-element-visible' : ''}`} style={{ '--delay': '0.2s' }}>
               Professional web design & development services tailored for your success. 
               Join <span className='highlight-number'>500+</span> satisfied clients worldwide.
             </p>
-            <div className='hero-cta'>
+            <div className={`hero-cta ${heroVisible ? 'hero-element-visible' : ''}`} style={{ '--delay': '0.4s' }}>
               <button className='btn-primary' onClick={scrollToContact}>Start Your Project</button>
               <button className='btn-secondary' onClick={scrollToPortfolio}>View Services</button>
             </div>
           </div>
-          <div className='hero-image'>
+          <div className={`hero-image ${heroVisible ? 'hero-element-visible' : ''}`} style={{ '--delay': '0.3s' }}>
             <div className='image-wrapper'>
               <img src={logo} alt='Shehan Freelancing' className='profile-img' id='profile-img' />
-              <div className='floating-badge badge-1'>
+              <div className={`floating-badge badge-1 ${heroVisible ? 'badge-visible' : ''}`} style={{ '--delay': '0.6s' }}>
                 <span>2+ Years</span>
                 <p>Experience</p>
               </div>
-              <div className='floating-badge badge-2'>
+              <div className={`floating-badge badge-2 ${heroVisible ? 'badge-visible' : ''}`} style={{ '--delay': '0.8s' }}>
                 <span>40+</span>
                 <p>Projects</p>
               </div>
-              <div className='floating-badge badge-3'>
+              <div className={`floating-badge badge-3 ${heroVisible ? 'badge-visible' : ''}`} style={{ '--delay': '1s' }}>
                 <span>100%</span>
                 <p>Satisfaction</p>
               </div>
@@ -365,7 +469,11 @@ export default function AllDetailsImproved() {
             { img: tailwind, name: 'Tailwind', color: '#06b6d4', level: 'Expert', percentage: '93%' },
             { img: mobile, name: 'Mobile Application', color: '#a855f7', level: 'Advanced', percentage: '85%' },
           ].map((skill, index) => (
-            <div key={index} className='skill-card-enhanced' style={{ '--skill-color': skill.color, '--delay': `${index * 0.1}s` }}>
+            <div 
+              key={index} 
+              className={`skill-card-enhanced ${skillsVisible ? 'skill-card-visible' : ''}`} 
+              style={{ '--skill-color': skill.color, '--delay': `${index * 0.25}s` }}
+            >
               <div className='skill-card-inner'>
                 <div className='skill-icon-container'>
                   <img 
@@ -409,7 +517,7 @@ export default function AllDetailsImproved() {
           <p className='services-subtitle'>Comprehensive solutions to bring your digital dreams to life</p>
         </div>
         <div className='services-grid'>
-          <div className='service-card-enhanced service-1'>
+          <div className={`service-card-enhanced service-1 ${servicesVisible ? 'service-card-visible' : ''}`} style={{ '--delay': '0s' }}>
             <div className='service-background-glow'></div>
             <div className='service-icon-wrapper'>
               <div className='service-icon'>
@@ -433,7 +541,7 @@ export default function AllDetailsImproved() {
             <div className='service-number'>01</div>
           </div>
           
-          <div className='service-card-enhanced service-2 featured'>
+          <div className={`service-card-enhanced service-2 featured ${servicesVisible ? 'service-card-visible' : ''}`} style={{ '--delay': '0.25s' }}>
             <div className='featured-badge'>
               <span className='badge-star'>⭐</span>
               Most Popular
@@ -461,7 +569,7 @@ export default function AllDetailsImproved() {
             <div className='service-number'>02</div>
           </div>
           
-          <div className='service-card-enhanced service-3'>
+          <div className={`service-card-enhanced service-3 ${servicesVisible ? 'service-card-visible' : ''}`} style={{ '--delay': '0.5s' }}>
             <div className='service-background-glow'></div>
             <div className='service-icon-wrapper'>
               <div className='service-icon'>
@@ -485,7 +593,7 @@ export default function AllDetailsImproved() {
             <div className='service-number'>03</div>
           </div>
           
-          <div className='service-card-enhanced service-4'>
+          <div className={`service-card-enhanced service-4 ${servicesVisible ? 'service-card-visible' : ''}`} style={{ '--delay': '0.75s' }}>
             <div className='service-background-glow'></div>
             <div className='service-icon-wrapper'>
               <div className='service-icon'>
@@ -654,7 +762,7 @@ export default function AllDetailsImproved() {
           </p>
         </div>
         <div className='tips-grid-enhanced'>
-          <div className='tip-card-modern tip-1'>
+          <div className={`tip-card-modern tip-1 ${tipsVisible ? 'tip-card-visible' : ''}`} style={{ '--delay': '0s' }}>
             <div className='tip-image-wrapper'>
               <img src={logo1} alt='People-focused design' />
               <div className='tip-overlay'>
@@ -691,7 +799,7 @@ export default function AllDetailsImproved() {
             </div>
           </div>
           
-          <div className='tip-card-modern tip-2'>
+          <div className={`tip-card-modern tip-2 ${tipsVisible ? 'tip-card-visible' : ''}`} style={{ '--delay': '0.4s' }}>
             <div className='tip-image-wrapper'>
               <img src={logo2} alt='Quality design' />
               <div className='tip-overlay'>
@@ -728,7 +836,7 @@ export default function AllDetailsImproved() {
             </div>
           </div>
           
-          <div className='tip-card-modern tip-3'>
+          <div className={`tip-card-modern tip-3 ${tipsVisible ? 'tip-card-visible' : ''}`} style={{ '--delay': '0.8s' }}>
             <div className='tip-image-wrapper'>
               <img src={logo3} alt='Mobile responsive' />
               <div className='tip-overlay'>
