@@ -9,10 +9,15 @@ import web from './Images/web.jpg';
 import contact from './Images/contact.png';
 import github from './Images/githubNew.png';
 import react from './Images/react.png';
+import dotnet from './Images/Microsoft_.NET_logo.svg';
 import angular from './Images/angularNew.png';
 import laravel from './Images/laravel.png';
 import nextJs from './Images/nextJs.png';
 import sql from './Images/sql.png';
+import mongodb from './Images/sql.png'; // Temporary - replace with mongodb.png
+import python from './Images/web.jpg'; 
+import mongob from './Images/MongoDB.jpeg'
+import pythons from  './Images/AI and Machine Learning Projects in Python – Fast & Efficient.jpeg'// Temporary - replace with python.png
 import tailwind from './Images/tailwind.png';
 import packettracer from './Images/packettracer.png';
 import figma from './Images/figma.png';
@@ -465,8 +470,11 @@ export default function AllDetailsImproved() {
             { img: angular, name: 'Angular', color: '#dd0031', level: 'Advanced', percentage: '85%' },
             { img: nextJs, name: 'Next.js', color: '#000000', level: 'Expert', percentage: '92%' },
             { img: sql, name: 'SQL', color: '#4479a1', level: 'Expert', percentage: '88%' },
+            { img: mongob, name: 'MongoDB', color: '#47A248', level: 'Advanced', percentage: '82%' },
+            { img: pythons, name: 'Python', color: '#3776AB', level: 'Advanced', percentage: '88%' },
             { img: laravel, name: 'Laravel', color: '#ff2d20', level: 'Advanced', percentage: '87%' },
             { img: tailwind, name: 'Tailwind', color: '#06b6d4', level: 'Expert', percentage: '93%' },
+            { img: dotnet, name: '.NET', color: '#512bd4', level: 'Advanced', percentage: '85%' },
             { img: mobile, name: 'Mobile Application', color: '#a855f7', level: 'Advanced', percentage: '85%' },
           ].map((skill, index) => (
             <div 
