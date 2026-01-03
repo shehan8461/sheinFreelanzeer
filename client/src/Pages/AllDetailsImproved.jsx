@@ -757,6 +757,108 @@ export default function AllDetailsImproved() {
         </div>
       </section>
 
+      {/* Featured Projects Section */}
+      <section className='portfolio-section' id='portfolio'>
+        <div className='portfolio-header'>
+          <h2 className='section-title'>
+            <span className='title-line'></span>
+            Featured Projects
+            <span className='title-line'></span>
+          </h2>
+          <p className='portfolio-subtitle'>
+            Real-world solutions delivered to satisfied clients
+          </p>
+        </div>
+        
+        <div className='portfolio-grid'>
+          <div className='portfolio-card'>
+            <div className='portfolio-image-wrapper'>
+              <div className='portfolio-overlay'>
+                <div className='portfolio-links'>
+                  <a 
+                    href='https://www.lalithelectrical.com/' 
+                    target='_blank' 
+                    rel='noopener noreferrer'
+                    className='portfolio-link'
+                  >
+                    <span>🌐</span>
+                    <span>Visit Live Site</span>
+                  </a>
+                </div>
+              </div>
+              <div className='portfolio-badge'>Live Project</div>
+            </div>
+            
+            <div className='portfolio-content'>
+              <div className='portfolio-tags'>
+                <span className='project-tag'>React</span>
+                <span className='project-tag'>Full Stack</span>
+                <span className='project-tag'>E-Commerce</span>
+              </div>
+              
+              <h3 className='portfolio-title'>Lalith Electrical Shop</h3>
+              
+              <p className='portfolio-description'>
+                A comprehensive e-commerce platform for an electrical shop, featuring product catalog, 
+                shopping cart functionality, and customer management. Built with React framework and 
+                deployed on a dedicated hosted server to meet specific client requirements.
+              </p>
+              
+              <div className='portfolio-features'>
+                <div className='feature-item'>
+                  <span className='feature-icon'>✓</span>
+                  <span>React Framework</span>
+                </div>
+                <div className='feature-item'>
+                  <span className='feature-icon'>✓</span>
+                  <span>Hosted Server</span>
+                </div>
+                <div className='feature-item'>
+                  <span className='feature-icon'>✓</span>
+                  <span>Custom Design</span>
+                </div>
+                <div className='feature-item'>
+                  <span className='feature-icon'>✓</span>
+                  <span>Client Focused</span>
+                </div>
+              </div>
+              
+              <div className='portfolio-tech-stack'>
+                <span className='tech-badge'>
+                  <img src={react} alt='React' />
+                  React
+                </span>
+                <span className='tech-badge'>
+                  <img src={tailwind} alt='Tailwind' />
+                  Tailwind CSS
+                </span>
+                <span className='tech-badge'>
+                  <img src={web} alt='Web' />
+                  Web Hosting
+                </span>
+              </div>
+              
+              <a 
+                href='https://www.lalithelectrical.com/' 
+                target='_blank' 
+                rel='noopener noreferrer'
+                className='portfolio-cta-btn'
+              >
+                <span>View Project</span>
+                <span className='btn-arrow'>→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div className='portfolio-footer'>
+          <p>Want to see your project here?</p>
+          <button className='portfolio-contact-btn' onClick={scrollToContact}>
+            Start Your Project
+          </button>
+        </div>
+      </section>
+
       {/* Tips Section */}
       <section className='tips-section'>
         <div className='tips-header'>
